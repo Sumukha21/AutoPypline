@@ -1,0 +1,10 @@
+control_flow:
+  adder:
+    function: test_scripts.arithmetic.adder
+    params:
+      a: 20
+      b: 10
+
+  outputs:
+    addition_output: adder
+

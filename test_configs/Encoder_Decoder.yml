@@ -1,0 +1,64 @@
+control_flow:
+  signal_seed_generator:
+    function: test_scripts.random_generators.random_number_generator
+    params:
+      start_value: 10
+      end_value: 35
+      no_elements: 100
+
+  communication_system:
+    internal_graph:
+      control_flow:
+        generate_signal:
+          function: test_scripts.random_generators.random_value_generator
+          params:
+            seed_value: dynamic.seed
+
+        filter_noise:
+          function: test_scripts.value_processors.remove_negative_value
+          inputs:
+            input_value: generate_signal
+
+        encoder:
+          internal_graph:
+            control_flow:
+              mask_signal:
+                function: test_scripts.value_processors.encode_value
+                inputs:
+                  input_value: filter_noise
+              add_extra_channels:
+                function: test_scripts.value_processors.insert_dummy_values_on_both_sides
+                inputs:
+                  input_value: mask_signal
+              outputs: add_extra_channels
+          inputs:
+            encoder_input: filter_noise
+
+        decoder:
+          internal_graph:
+            control_flow:
+              remove_extra_channels:
+                function: test_scripts.value_processors.remove_dummy_values_on_both_sides
+                inputs:
+                  input_val: encoder
+              unmask_signal:
+                function: test_scripts.value_processors.decode_value
+                inputs:
+                  input_value: remove_extra_channels
+              outputs: unmask_signal
+          inputs:
+            decoder_input: encoder
+
+        outputs:
+          signal_generated: generate_signal
+          signal_encoded: encoder
+          signal_received: decoder
+
+      generator_inputs:
+        batch_size: 12
+        iterator_dict:
+           seed: signal_seed_generator
+    inputs:
+      numbers: signal_seed_generator
+
+  outputs: communication_system

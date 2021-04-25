@@ -1,0 +1,47 @@
+1) Objective: Compute sum of two integers:
+   Config: add_simple.yml
+   Purpose:
+     1) Just to check if a node is being instantiated and executed
+     2) Exception handling testing (factory/function multiple paths,
+      not giving params as dict)
+     3) Checking if output is being printed
+
+
+2) Objective: Evaluate the following expression ((c - (a + b)) + d + (a + b)):
+   Note: (a, b, c, d are integers)
+   Config: three_nodes_simple.yml
+   Purpose:
+     1) Check if the nodes are executed in the correct flow
+     2) Check if output of one node is being correctly fed as input to other node
+     3) Passing outputs from multiple nodes as input to a single node
+     4) Exception handling (Input not given as dict, incorrect node names in inputs)
+     5) Returning outputs from multiple nodes
+
+
+3) Objective: Evaluate the following expressions ((c - (a + b)) + (a * b) + (a - b)), (c - (a + b) + d)
+   Note: (a, b, c, d are integers)
+   Config: multi_node_multi_output.yml
+   Purpose:
+     1) Check the execution when having multiple flows
+     2) Accessing individual outputs when a node returns multiple outputs and passing
+        that as input to other nodes
+     3) Providing all parameters of a node through the outputs of other nodes
+
+4) Objective: Compute sum of two lists element wise
+   Config: generator_simple.yml
+   Purpose:
+     1) Testing dynamic inputs access (From an external source)
+     2) Testing working with different batch_size values
+     3) Different ways of storing outputs
+     4) Providing iterators through different sources
+        4.1) Both inputs from outputs of other nodes
+        4.2) Both inputs from files
+        4.3) One input from file, other from output of other node
+     5) Reading from different types of files (csv, pckl, txt)
+     6) Output from other node having different formats (dict, list)
+
+5) Objective: Design the processing pipeline for a communication system
+   Config: Encoder_Decoder.yml
+   Purpose:
+     1) Testing Multi level graph flows (3 levels)
+     2) global outputs access (including level 1 to level3)

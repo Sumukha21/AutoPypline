@@ -1,0 +1,43 @@
+control_flow:
+  number_generator:
+    function: test_scripts.random_generators.random_number_generator2
+    params:
+      start_value: -10
+      end_value: 35
+      no_elements: 20
+
+  number_generator2:
+    function: test_scripts.random_generators.random_number_generator
+    params:
+      start_value: 100
+      end_value: 200
+      no_elements: 20
+
+  compute_sum:
+    internal_graph:
+      control_flow:
+        add:
+          function: test_scripts.arithmetic.adder
+          params:
+            a: dynamic.a_value
+            b: dynamic.b
+        outputs:
+          sum: add
+
+      generator_inputs:
+        batch_size: 12
+        iterator_dict:
+          a: number_generator
+          b: number_generator2
+#        paths_to_files_containing_iterator_dict:
+#          b: "C:/Users/Sumukha/Desktop/Projects/AutoPipeline/other_files/random_numbers.txt"
+  #        b: "C:/Users/Sumukha/Desktop/Projects/AutoPipeline/other_files/random_numbers.txt"
+
+      store_output_as: List
+#      store_output_as: Dict
+
+    inputs:
+      numbers: number_generator
+      numbers2: number_generator2
+
+  outputs: compute_sum

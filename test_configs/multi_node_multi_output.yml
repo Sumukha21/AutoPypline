@@ -1,0 +1,32 @@
+control_flow:
+  multipy_add_subtract:
+    function: test_scripts.arithmetic.mac
+    params:
+      a: 20
+      b: 10
+
+  subtract:
+    function: test_scripts.arithmetic.subtract
+    params:
+      a: 20
+    inputs:
+      b: multipy_add_subtract.outputs.sum
+
+  adder3:
+    function: test_scripts.arithmetic.adder_3
+    inputs:
+      a: multipy_add_subtract.outputs.prod
+      b: multipy_add_subtract.outputs.diff
+      c: subtract
+
+  adder:
+    function: test_scripts.arithmetic.adder
+    params:
+      b: 20
+    inputs:
+      a: subtract
+
+  outputs:
+    final_addition_output: adder3
+    mac_only_add_output: multipy_add_subtract.outputs.sum
+    alt_adder_output: adder

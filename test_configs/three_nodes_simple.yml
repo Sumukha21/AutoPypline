@@ -1,0 +1,26 @@
+control_flow:
+  adder:
+    function: test_scripts.arithmetic.adder
+    params:
+      a: 20
+      b: 10
+
+  subtract:
+    function: test_scripts.arithmetic.subtract
+    params:
+      a: 20
+    inputs:
+      b: adder
+
+  adder3:
+    function: test_scripts.arithmetic.adder_3
+    params:
+      a: 20
+    inputs:
+      b: adder
+      c: subtract
+
+  outputs:
+    addition_output: adder
+    subtraction_output: subtract
+    final_addition_output: adder3
