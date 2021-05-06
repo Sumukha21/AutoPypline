@@ -1,2 +1,2 @@
 # AutoPypline
-Automatic  execution of  pipeline defined in a yaml file 
+Automatic  execution of python pipelines defined in a yaml file 
