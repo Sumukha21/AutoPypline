@@ -4,7 +4,7 @@ control_flow:
     params:
       start_value: 10
       end_value: 35
-      no_elements: 100
+      no_elements: 10
 
   communication_system:
     internal_graph:
@@ -31,8 +31,6 @@ control_flow:
                 inputs:
                   input_value: mask_signal
               outputs: add_extra_channels
-          inputs:
-            encoder_input: filter_noise
 
         decoder:
           internal_graph:
@@ -46,8 +44,6 @@ control_flow:
                 inputs:
                   input_value: remove_extra_channels
               outputs: unmask_signal
-          inputs:
-            decoder_input: encoder
 
         outputs:
           signal_generated: generate_signal
@@ -58,7 +54,5 @@ control_flow:
         batch_size: 12
         iterator_dict:
            seed: signal_seed_generator
-    inputs:
-      numbers: signal_seed_generator
 
   outputs: communication_system
