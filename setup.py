@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="AutoPypline",
-    version="1.0.0",
+    version="0.0.1",
     author="Sumukha Manjunath",
     author_email="sumukha1996@gmail.com",
     description="A package for automating python pipelines",
