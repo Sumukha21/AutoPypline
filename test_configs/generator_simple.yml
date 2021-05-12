@@ -19,25 +19,21 @@ control_flow:
         add:
           function: test_scripts.arithmetic.adder
           params:
-            a: dynamic.a_value
-            b: dynamic.b
+            a: dynamic.a
+            b: dynamic.b_value
         outputs:
           sum: add
 
       generator_inputs:
         batch_size: 12
         iterator_dict:
-          a: number_generator
-          b: number_generator2
-#        paths_to_files_containing_iterator_dict:
-#          b: "C:/Users/Sumukha/Desktop/Projects/AutoPipeline/other_files/random_numbers.txt"
-  #        b: "C:/Users/Sumukha/Desktop/Projects/AutoPipeline/other_files/random_numbers.txt"
+          a: number_generator2
+#          b: number_generator2
+        paths_to_files_containing_iterator_dict:
+#          a: "C:/Users/Sumukha/Desktop/Projects/AutoPypline/other_files/random_numbers.txt"
+          b: "C:/Users/Sumukha/Desktop/Projects/AutoPypline/other_files/random_numbers.pckl"
 
-      store_output_as: List
-#      store_output_as: Dict
-
-    inputs:
-      numbers: number_generator
-      numbers2: number_generator2
+#      store_output_as: List
+      store_output_as: Dict
 
   outputs: compute_sum

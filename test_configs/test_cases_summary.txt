@@ -44,4 +44,4 @@
    Config: Encoder_Decoder.yml
    Purpose:
      1) Testing Multi level graph flows (3 levels)
-     2) global outputs access (including level 1 to level3)
+     2) Direct global outputs access (including level 1 to level3)

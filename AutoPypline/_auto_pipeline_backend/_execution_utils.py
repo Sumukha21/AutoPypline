@@ -1,5 +1,5 @@
 import threading
-import auto_pipeline as auto
+import AutoPypline.auto_pipeline as auto
 
 
 def parallel_executor(flows, graph):

@@ -1,9 +1,9 @@
 import multiprocessing as mp
 import copy
-from _auto_pipeline_backend._designer import graph_designer
-from _auto_pipeline_backend._flow_preparation import flow_generator
-from _auto_pipeline_backend._sample_generator_related import AutomatedGenerator
-from _auto_pipeline_backend._executor import execute_graph
+from AutoPypline._auto_pipeline_backend._designer import graph_designer
+from AutoPypline._auto_pipeline_backend._flow_preparation import flow_generator
+from AutoPypline._auto_pipeline_backend._sample_generator_related import AutomatedGenerator
+from AutoPypline._auto_pipeline_backend._executor import execute_graph
 
 
 class AutoPipeline:

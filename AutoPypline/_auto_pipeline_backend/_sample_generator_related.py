@@ -1,5 +1,5 @@
 import math
-from AutoPypline.Utils import file_reader, pickle_reader, csv_reader
+from AutoPypline.Utils.utils import file_reader, pickle_reader, csv_reader
 
 
 class AutomatedGenerator:

@@ -1,5 +1,5 @@
-from _auto_pipeline_backend._execution_utils import sequential_flow_executor
-from _auto_pipeline_backend._other_utils import supplant_dynamic_values_in_graph, return_outputs
+from AutoPypline._auto_pipeline_backend._execution_utils import sequential_flow_executor
+from AutoPypline._auto_pipeline_backend._other_utils import supplant_dynamic_values_in_graph, return_outputs
 
 
 def execute_graph(graph, directed_flows, dynamic_inputs=None, required_outputs=None):

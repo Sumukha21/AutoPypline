@@ -1,4 +1,4 @@
-from AutoPypline.Utils import object_instantiate
+from AutoPypline.Utils.utils import object_instantiate
 
 
 class CreateGraphNode:
