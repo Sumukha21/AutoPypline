@@ -30,3 +30,7 @@ control_flow:
     final_addition_output: adder3
     mac_only_add_output: multipy_add_subtract.outputs.sum
     alt_adder_output: adder
+    mac_outputs:
+      add: multipy_add_subtract.outputs.sum
+      sub: multipy_add_subtract.outputs.diff
+      prod: multipy_add_subtract.outputs.prod

@@ -22,5 +22,10 @@ control_flow:
 
   outputs:
     addition_output: adder
-    subtraction_output: subtract
-    final_addition_output: adder3
+#    subtraction_output: subtract
+#    final_addition_output: adder3
+    adder_subtractor:
+       - subtract
+       - addition_outputs:
+            add1: adder
+            add2: adder3

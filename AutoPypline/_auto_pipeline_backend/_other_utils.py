@@ -38,6 +38,53 @@ def return_outputs(double_linked_graph, required_outputs):
     return outputs
 
 
+def return_outputs_recursive(double_linked_graph, required_outputs):
+    """
+    Extracts the outputs of the required nodes from the double linked graph
+    :param double_linked_graph:
+    :param required_outputs:
+    :return:
+    """
+    outputs = dict()
+    if isinstance(required_outputs, dict):
+        for output_name, required_node_name in required_outputs.items():
+            if isinstance(required_node_name, dict):
+                outputs[output_name] = return_outputs_recursive(double_linked_graph, required_node_name)
+            elif isinstance(required_node_name, list):
+                outputs[output_name] = return_outputs_recursive(double_linked_graph, required_node_name)
+            else:
+                if len(required_node_name.split(".")) > 1:
+                    node_name, _, specific_output_name = required_node_name.split(".")
+                    outputs[output_name] = double_linked_graph[node_name].outputs[specific_output_name]
+                elif len(required_node_name.split(".")) == 1:
+                    outputs[output_name] = double_linked_graph[required_node_name].outputs
+    elif isinstance(required_outputs, list):
+        outputs = []
+        for required_node_name in required_outputs:
+            if isinstance(required_node_name, dict):
+                outputs.append(return_outputs_recursive(double_linked_graph, required_node_name))
+            elif isinstance(required_node_name, list):
+                outputs.append(return_outputs_recursive(double_linked_graph, required_node_name))
+            else:
+                if len(required_node_name.split(".")) > 1:
+                    node_name, _, specific_output_name = required_node_name.split(".")
+                    outputs.append(double_linked_graph[node_name].outputs[specific_output_name])
+                elif len(required_node_name.split(".")) == 1:
+                    outputs.append(double_linked_graph[required_node_name].outputs)
+    elif isinstance(required_outputs, str):
+        if len(required_outputs.split(".")) > 1:
+            node_name, _, specific_output_name = required_outputs.split(".")
+            outputs = double_linked_graph[node_name].outputs[specific_output_name]
+        elif len(required_outputs.split(".")) == 1:
+            outputs = double_linked_graph[required_outputs].outputs
+    else:
+        raise AttributeError("Required outputs should be provided in dictionary, list or string format")
+    if isinstance(outputs, list):
+        if len(outputs) <= 1:
+            return outputs[0]
+    return outputs
+
+
 def supplant_dynamic_values_in_graph(graph, dynamic_inputs):
     for node in graph:
         if len(graph[node].dynamic_params):

@@ -16,6 +16,7 @@
      3) Passing outputs from multiple nodes as input to a single node
      4) Exception handling (Input not given as dict, incorrect node names in inputs)
      5) Returning outputs from multiple nodes
+     6) Complex outputs
 
 
 3) Objective: Evaluate the following expressions ((c - (a + b)) + (a * b) + (a - b)), (c - (a + b) + d)
@@ -26,6 +27,7 @@
      2) Accessing individual outputs when a node returns multiple outputs and passing
         that as input to other nodes
      3) Providing all parameters of a node through the outputs of other nodes
+     4) Complex outputs
 
 4) Objective: Compute sum of two lists element wise
    Config: generator_simple.yml
