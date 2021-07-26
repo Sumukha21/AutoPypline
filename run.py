@@ -1,11 +1,11 @@
 import os
-from AutoPypline.Utils import yaml_reader
-from auto_pipeline import AutoPipeline
+from AutoPypline.Utils.utils import yaml_reader
+from AutoPypline.auto_pipeline import AutoPipeline
 
 
 if __name__ == "__main__":
     configs_folder = "C:/Users/Sumukha/Desktop/Projects/AutoPypline/test_configs/"
-    config_file_name = "generator_simple.yml"
+    config_file_name = "multi_node_multi_output.yml"
     config = yaml_reader(os.path.join(configs_folder, config_file_name))
     auto = AutoPipeline(config=config.get("control_flow"),
                         generator_inputs=config.get("generator_inputs"),

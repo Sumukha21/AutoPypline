@@ -77,11 +77,12 @@ def sequential_flow_executor(flows, graph):
                                    max(map(len, list(commonality.values())))][0]
         if len(common_initial_flow):
             for node in common_initial_flow:
-                if graph[node].outputs is not None:
+                if graph[node].node_executed:
                     continue
                 else:
                     node_output = node_executor(node, graph)
                     graph[node].outputs = node_output
+                    graph[node].node_executed = True
     for flow in flows:
         graph = single_flow_executor(flow, graph)
     return graph
