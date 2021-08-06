@@ -1,10 +1,10 @@
 control_flow:
-  number_generator:
-    function: test_scripts.random_generators.random_number_generator2
-    params:
-      start_value: -10
-      end_value: 35
-      no_elements: 20
+#  number_generator:
+#    function: test_scripts.random_generators.random_number_generator2
+#    params:
+#      start_value: -10
+#      end_value: 35
+#      no_elements: 20
 
   number_generator2:
     function: test_scripts.random_generators.random_number_generator
@@ -25,7 +25,7 @@ control_flow:
           sum: add
 
       generator_inputs:
-        batch_size: 12
+        batch_size: 1
         iterator_dict:
           a: number_generator2
 #          b: number_generator2

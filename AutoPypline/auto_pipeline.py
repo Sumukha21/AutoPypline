@@ -81,6 +81,7 @@ class AutoPipeline:
                 pool = mp.Pool()
                 j = 0
                 for i in range(self.generator.__len__()):
+                    self.reset()
                     batch_sample = self.generator(i)
                     batch_input = [tuple([copy.deepcopy(self.global_graph), self.directed_flows,
                                          batch_sample_i, self.required_outputs]) for batch_sample_i in batch_sample]
@@ -98,6 +99,7 @@ class AutoPipeline:
                 pool.join()
             else:
                 for i in range(self.generator.__len__()):
+                    self.reset()
                     batch_sample = self.generator(i)
                     batch_results = execute_graph(copy.deepcopy(self.global_graph), self.directed_flows,
                                                   *batch_sample, self.required_outputs)
@@ -108,9 +110,11 @@ class AutoPipeline:
                         if output_key is None:
                             output_key = "input_%d" % i
                         outputs[output_key] = batch_results
+
         else:
             outputs = execute_graph(self.global_graph, self.directed_flows, external_inputs,
                                     self.required_outputs)
+            self.reset()
         if isinstance(outputs, list):
             if len(outputs) <= 1:
                 return outputs[0]
